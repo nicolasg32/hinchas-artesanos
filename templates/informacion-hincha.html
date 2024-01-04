@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/informacion.css') }}">
+    <title>Informacion Artesano</title>
+    <style>h4 {text-align: justify;}</style>
+</head>
+<body>
+    <div class="volver">
+        <a href="{{ url_for('verHinchas') }}" id="volver-btn">Volver</a>
+    </div>
+    <div class="hinchas">
+        <h3>Deporte(s):</h3>
+        <h4>{{tipo}}</h4>
+        <h3>Región:</h3>
+        <h4>{{region}}</h4>
+        <h3>Comuna:</h3>
+        <h4>{{comuna}}</h4>
+        <h3>Modo transporte:</h3>
+        <h4>{{hinchas[2]}}</h4>
+        <h3>Nombre hincha:</h3>
+        <h4>{{hinchas[3]}}</h4>
+        <h3>E-mail contacto:</h3>
+        <h4>{{hinchas[4]}}</h4>
+        <h3>Número celular contacto +56:</h3>
+        <h4>{{hinchas[5]}}</h4>
+    </div>
+    <script src="../js/resize.js"></script>
+</body>
+</html>

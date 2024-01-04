@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/index.css') }}">
+    <title>Inicio</title>
+</head>
+<body>
+    <div class="botones">
+        <h1>Tarea 3 CC5002 - Nicolás González Montecino</h1>
+        <a href="{{ url_for('agregarHincha') }}" class="boton">Registrar Hincha</a>
+        <a href="{{ url_for('agregarArtesano') }}" class="boton">Agregar artesano</a>
+        <a href="{{ url_for('verArtesanos') }}" class="boton">Ver artesanos</a>
+        <a href="{{ url_for('verHinchas') }}" class="boton">Ver hinchas</a>
+        <a href="{{ url_for('graficos') }}" class="boton">Gráficos hinchas y artesanos</a>
+    </div>
+</body>
+</html>

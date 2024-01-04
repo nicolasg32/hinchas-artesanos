@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/ver-objetos.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <title>Ver artesanos</title>
+</head>
+<body>
+    <div class="volver">
+        <a href="{{ url_for('index') }}" id="volver-btn">Volver</a>
+    </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <p class="flash">
+                {{ message }}
+                <button class="close" onclick="closeFlash()">X</button>
+            </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div class="container">
+        <table id="table">
+            <tr>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Comuna</th>
+                <th>Tipo Artesanías</th>
+                <th>Fotos</th>
+            </tr>
+            {% for i in range(lenArtesanos) %}
+                <tr class="clickeable" onclick="location.href='/ver-artesanos/{{ artesanos[i][0] }}'">
+                        <td>{{ artesanos[i][3].capitalize() }}</td>
+                        <td>{{ artesanos[i][5].title() }}</td>
+                        <td>{{ comunas[i] }}</td>
+                        <td>
+                            {{ tipo_names[i] }}
+                        </td>
+                        <td>
+                            <div class="image-container">
+                                {% for image in IMAGES[i] %}
+                                    <img src="{{ url_for('static', filename='img/' + image) }}" alt="Foto" class="rounded-image">
+                                {% endfor %}
+                            </div>
+                        </td>
+                    </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% if num_pages > 1 %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center pt-4 pb-4">
+                {% if page > 1 %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('verArtesanos', page=page-1, per_page=per_page) }}">
+                            Anterior
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            Anterior
+                        </a>
+                    </li>
+                {% endif %}
+        
+                {% for p in range(1, num_pages + 1) %}
+                    {% if p == page %}
+                        <li class="page-item">
+                            <a class="page-link" href="#">
+                                {{ p }}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ url_for('verArtesanos', page=p, per_page=per_page) }}">
+                                {{ p }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+        
+                {% if page < num_pages %} 
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('verArtesanos', page=page+1, per_page=per_page) }}">
+                            Siguiente
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            Siguiente
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+</body>
+<script>
+    function closeFlash() {
+        var flash = document.querySelector('.flash');
+        flash.style.display = 'none';
+    }
+</script>
+</html>

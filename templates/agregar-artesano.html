@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/agregar-artesano.css') }}">
+    <title>Agregar artesano</title>
+</head>
+<body>
+    <div class="volver">
+        <a href="{{ url_for('index') }}" id="volver-btn">Volver</a>
+    </div>
+    <div class="container">
+        <form id="formulario" method="POST" enctype="multipart/form-data">
+            <div class="reg">
+                <h6>Los campos con (*) son obligatorios.</h6>
+                <label for="region">Región (*)</label>
+                <select name="region" id="region">
+                    <option selected value="no-selection">Seleccione una región</option>
+                </select>
+                <span hidden id="valid-region"> ✔️ </span>
+                <span hidden id="invalid-region"> <br>❌ Selecciona una región válida. </span>
+            </div>
+            <div class="com">
+                <label for="comuna">Comuna (*)</label>
+                <select name="comuna" id="comuna">
+                    <option selected value="no-selection-comuna">Seleccione una comuna</option>
+                </select>
+                <span hidden id="valid-comuna"> ✔️ </span>
+                <span hidden id="invalid-comuna"> <br>❌ Selecciona una comuna válida. </span>
+            </div>
+            <div class="tipo">
+                <label for="tipo">Tipo artesanía (*)</label>
+                <select name="tipo" id="tipo" multiple="multiple" size="5">
+                    <option value="mármol">mármol</option>
+                    <option value="madera">madera</option>
+                    <option value="cerámica">cerámica</option>
+                    <option value="mimbre">mimbre</option>
+                    <option value="metal">metal</option>
+                    <option value="cuero">cuero</option>
+                    <option value="telas">telas</option>
+                    <option value="joyas">joyas</option>
+                    <option value="otro">otro</option>
+                </select>
+                <span hidden id="valid-tipo"> ✔️ </span>
+                <span hidden id="invalid-tipo"> <br>❌ Selecciona entre 1 a 3 tipos. </span>
+            </div>
+            <div class="desc">
+                <label for="descripcion">Descripción artesanías</label>
+                <textarea name="descripcion" id="descripcion" rows="4" cols="50" style="color: black;"></textarea>
+                <span hidden id="valid-desc"> ✔️ </span>
+                <span hidden id="invalid-desc"> <br>❌ Descripción demasiado larga. </span>
+            </div>           
+            <div class="foto-artesano">
+                <label for="foto">Foto artesanías (1 mín., 3 máx.) (*)</label>
+                <input type="file" name="foto" id="foto" multiple accept="image/*">
+                <span hidden id="valid-foto"> ✔️ </span>
+                <span hidden id="invalid-foto"> <br>❌ Este campo es obligatorio. </span>
+                <span hidden id="invalid-size"> <br>❌ Demasiadas imágenes. </span>
+                <span hidden id="invalid-format"> <br>❌ Formato inválido. </span>
+            </div>
+            <div class="nombre">
+                <label for="nombre">Nombre artesano(a) (*)</label>
+                <input type="text" name="nombre" id="nombre" size="80"  minlength="3" maxlength="80">
+                <span hidden id="valid-nombre"> ✔️ </span>
+                <span hidden id="invalid-nombre"> <br>❌ Nombre inválido. </span>
+            </div>
+            <div class="email-contacto">
+                <label for="email">E-mail de contacto artesano(a) (*)</label>
+                <input type="email" name="email" id="email" size="30">
+                <span hidden id="valid-email"> ✔️ </span>
+                <span hidden id="invalid-email"> <br>❌ E-mail inválido. </span>
+            </div>
+            <div class="numero-cel">
+                <label for="celular">Número de celular contacto +56</label>
+                <input type="text" name="celular" id="celular" size="15">
+                <span hidden id="valid-cel"> ✔️ </span>
+                <span hidden id="invalid-cel"> <br>❌ Número inválido o contiene espacios. </span>
+            </div>
+            <div class="submit-btn">
+                <button id="enviar">Registrar Artesano</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="modal-container" style="display: none;">
+        <div id="modal-dialog">
+          <p id="modal-text">“¿Confirma el registro de este artesano?</p>
+          <div id="modal-buttons">
+            <button id="aceptar" class="modal">Sí, confirmo</button>
+            <button id="cancelar" class="modal">No, quiero volver al formulario</button>
+          </div>
+        </div>
+    </div>
+
+    <div id="modal-confirmation" style="display: none;">
+        <div id="modal-dialog2">
+          <p id="modal-text2">Hemos recibido el registro de Artesano. Muchas gracias.</p>
+          <div id="modal-buttons2">
+            <button id="confirmar" class="modal">Aceptar</button>
+          </div>
+        </div>
+      </div>
+    <script src="{{ url_for('static', filename = 'js/region_comuna.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/artesano_validacion.js') }}"></script>
+</body>
+</html>

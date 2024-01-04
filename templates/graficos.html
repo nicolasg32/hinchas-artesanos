@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/index.css') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/icon/favicon.ico') }}">
+    <title>Gráficos hinchas y artesanos</title>
+</head>
+<body>
+    <div class="card">
+        <div class="volver">
+            <a href="{{ url_for('index') }}" id="volver-btn">Volver</a>
+        </div>
+        <figure class="highcharts-figure">
+            <div id="grafico-hinchas"></div>
+        </figure>
+        <figure class="highcharts-figure">
+            <div id="grafico-artesanos"></div>
+        </figure>
+    </div>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="{{url_for('static', filename='js/graficos.js')}}"></script>
+</body>
+</html>

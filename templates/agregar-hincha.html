@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/agregar-hincha.css') }}">
+    <title>Registrar Hincha</title>
+</head>
+<body>
+    <div class="volver">
+        <a href="{{ url_for('index') }}" id="volver-btn">Volver</a>
+    </div>
+    <div class="container">
+        <form id="formulario" method="POST" enctype="multipart/form-data">
+            <div class="dep">
+                <h6>Los campos con (*) son obligatorios.</h6>
+                <label for="sport">Deporte(s) que interesa apoyar (*) (Ctrl+click para seleccionar mas de uno)</label>
+                <select name="sport" id="sport" multiple="multiple" size="5">
+                    <option value="Clavados">Clavados</option>
+                    <option value="Natación">Natación</option>
+                    <option value="Natación artística">Natación artística</option>
+                    <option value="Polo acuático">Polo acuático</option>
+                    <option value="Natación en Aguas abiertas">Natación en Aguas abiertas</option>
+                    <option value="Maratón">Maratón</option>
+                    <option value="Marcha">Marcha</option>
+                    <option value="Atletismo">Atletismo</option>
+                    <option value="Bádminton">Bádminton</option>
+                    <option value="Balonmano">Balonmano</option>
+                    <option value="Básquetbol">Básquetbol</option>
+                    <option value="Básquetbol 3x3">Básquetbol 3x3</option>
+                    <option value="Béisbol">Béisbol</option>
+                    <option value="Boxeo">Boxeo</option>
+                    <option value="Bowling">Bowling</option>
+                    <option value="Breaking">Breaking</option>
+                    <option value="Canotaje Slalom">Canotaje Slalom</option>
+                    <option value="Canotaje de velocidad">Canotaje de velocidad</option>
+                    <option value="BMX Freestyle">BMX Freestyle</option>
+                    <option value="BMX Racing">BMX Racing</option>
+                    <option value="Mountain Bike">Mountain Bike</option>
+                    <option value="Ciclismo pista">Ciclismo pista</option>
+                    <option value="Ciclismo ruta">Ciclismo ruta</option>
+                    <option value="Adiestramiento ecuestre">Adiestramiento ecuestre</option>
+                    <option value="Evento completo ecuestre">Evento completo ecuestre</option>
+                    <option value="Salto ecuestre">Salto ecuestre</option>
+                    <option value="Escalada deportiva">Escalada deportiva</option>
+                    <option value="Esgrima">Esgrima</option>
+                    <option value="Esquí acuático y Wakeboard">Esquí acuático y Wakeboard</option>
+                    <option value="Fútbol">Fútbol</option>
+                    <option value="Gimnasia artística Masculina">Gimnasia artística Masculina</option>
+                    <option value="Gimnasia artística Femenina">Gimnasia artística Femenina</option>
+                    <option value="Gimnasia rítmica">Gimnasia rítmica</option>
+                    <option value="Gimnasia trampolín">Gimnasia trampolín</option>
+                    <option value="Golf">Golf</option>
+                    <option value="Hockey césped">Hockey césped</option>
+                    <option value="Judo">Judo</option>
+                    <option value="Karate">Karate</option>
+                    <option value="Levantamiento de pesas">Levantamiento de pesas</option>
+                    <option value="Lucha">Lucha</option>
+                    <option value="Patinaje artístico">Patinaje artístico</option>
+                    <option value="Skateboarding">Skateboarding</option>
+                    <option value="Patinaje velocidad">Patinaje velocidad</option>
+                    <option value="Pelota vasca">Pelota vasca</option>
+                    <option value="Pentatlón moderno">Pentatlón moderno</option>
+                    <option value="Racquetball">Racquetball</option>
+                    <option value="Remo">Remo</option>
+                    <option value="Rugby 7">Rugby 7</option>
+                    <option value="Sóftbol">Sóftbol</option>
+                    <option value="Squash">Squash</option>
+                    <option value="Surf">Surf</option>
+                    <option value="Taekwondo">Taekwondo</option>
+                    <option value="Tenis">Tenis</option>
+                    <option value="Tenis de mesa">Tenis de mesa</option>
+                    <option value="Tiro">Tiro</option>
+                    <option value="Tiro con arco">Tiro con arco</option>
+                    <option value="Triatlón">Triatlón</option>
+                    <option value="Vela">Vela</option>
+                    <option value="Vóleibol">Vóleibol</option>
+                    <option value="Vóleibol playa">Vóleibol playa</option>
+                </select>
+                <span hidden id="valid-sport"> ✔️ </span>
+                <span hidden id="invalid-sport"> <br>❌ Seleccione entre 1 y 3 deportes. </span>
+            </div>
+            <div class="reg">
+                <h6>Los campos con (*) son obligatorios.</h6>
+                <label for="region">Región (*)</label>
+                <select name="region" id="region">
+                    <option selected value="no-selection">Seleccione una región</option>
+                </select>
+                <span hidden id="valid-region"> ✔️ </span>
+                <span hidden id="invalid-region"> <br>❌ Selecciona una región válida. </span>
+            </div>
+            <div class="com">
+                <label for="comuna">Comuna (*)</label>
+                <select name="comuna" id="comuna">
+                    <option selected value="no-selection-comuna">Seleccione una comuna</option>
+                </select>
+                <span hidden id="valid-comuna"> ✔️ </span>
+                <span hidden id="invalid-comuna"> <br>❌ Selecciona una comuna válida. </span>
+            </div>
+            
+            <div class="tipo-transporte">
+                <label for="tipo">Tipo de transporte (*)</label>
+                <select name="tipo" id="tipo">
+                    <option selected value="no-selection-tipo">Seleccione un tipo</option>
+                    <option value="particular">particular</option>
+                    <option value="locomoción pública">locomoción pública</option>
+                </select>
+                <span hidden id="valid-tipo"> ✔️ </span>
+                <span hidden id="invalid-tipo"> <br>❌ Selecciona un tipo válido. </span>
+            </div>
+            <div class="nombre">
+                <label for="nombre">Nombre (*)</label>
+                <input type="text" name="nombre" id="nombre" size="80"  minlength="3" maxlength="80">
+                <span hidden id="valid-nombre"> ✔️ </span>
+                <span hidden id="invalid-nombre"> <br>❌ Nombre inválido. </span>
+            </div>
+            <div class="email-contacto">
+                <label for="email">E-mail de contacto (*)</label>
+                <input type="email" name="email" id="email" size="30">
+                <span hidden id="valid-email"> ✔️ </span>
+                <span hidden id="invalid-email"> <br>❌ E-mail inválido. </span>
+            </div>
+            <div class="numero-cel">
+                <label for="celular">Número de celular +56</label>
+                <input type="text" name="celular" id="celular" size="15">
+                <span hidden id="valid-cel"> ✔️ </span>
+                <span hidden id="invalid-cel"> <br>❌ Número inválido o contiene espacios. </span>
+            </div>
+            <div class="desc">
+                <label for="descripcion">Comentarios adicionales</label>
+                <input type="text" name="descripcion" id="descripcion" size="80">
+                <span hidden id="valid-desc"> ✔️ </span>
+                <span hidden id="invalid-desc"> <br>❌ Comentario demasiado largo. </span>
+            </div>
+            <div class="submit-btn">
+                <button id="enviar">Registrar Hincha</button>
+            </div>
+        </form>
+    </div>
+    
+    <div id="modal-container" style="display: none;">
+        <div id="modal-dialog">
+          <p id="modal-text">¿Confirma el registro de este hincha?</p>
+          <div id="modal-buttons">
+            <button id="aceptar" class="modal">“Sí, confirmo</button>
+            <button id="cancelar" class="modal">No, quiero volver al formulario</button>
+          </div>
+        </div>
+      </div>
+
+    <div id="modal-confirmation" style="display: none;">
+        <div id="modal-dialog2">
+          <p id="modal-text2">Hemos recibido el registro de Hincha. Muchas gracias.</p>
+          <div id="modal-buttons2">
+            <button id="confirmar" class="modal">Aceptar</button>
+          </div>
+        </div>
+      </div>
+      
+      <script src="{{ url_for('static', filename = 'js/region_comuna.js') }}"></script>
+      <script src="{{ url_for('static', filename = 'js/hincha_validacion.js') }}"></script>
+</body>
+</html>
